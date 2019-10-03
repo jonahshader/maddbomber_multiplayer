@@ -33,7 +33,7 @@ public class Hud {
 
     public Hud(final MaddBomber game) {
         this.game = game;
-        font = game.getAssets().getManager().get(game.getAssets().getLoadingFont(), BitmapFont.class);
+        font = game.getAssets().getManager().get(game.getAssets().getHudFont(), BitmapFont.class);
 //        game.assets.manager.get(game.assets.fuse, Sound.class).stop(soundId);
         player1Score = 0;
         player2Score = 0;
@@ -60,28 +60,28 @@ public class Hud {
         table.add(player3label).expandX().padTop(2);
         table.add(player4label).expandX().padTop(2);
         table.row();
-        table.add(timeRemainingLabel).expandX().padTop(2);
+        table.add(timeRemainingLabel).padLeft(16).expandX().padTop(2);
 
         stage.addActor(table);
     }
 
     public void updateLables() {
-        player1label.setText("Player 1 Score: " + player1Score);
-        player2label.setText("Player 2 Score: " + player2Score);
-        player3label.setText("Player 3 Score: " + player3Score);
-        player4label.setText("Player 4 Score: " + player4Score);
+        player1label.setText("Player 1 Score: " + player1Score + " ");
+        player2label.setText("Player 2 Score: " + player2Score + " ");
+        player3label.setText("Player 3 Score: " + player3Score + " ");
+        player4label.setText("Player 4 Score: " + player4Score + " ");
     }
 
     public void draw() {
-        player1label.setColor(0, 0, 0, 1);
-        player2label.setColor(0, 0, 0, 1);
-        player3label.setColor(0, 0, 0, 1);
-        player4label.setColor(0, 0, 0, 1);
-        timeRemainingLabel.setColor(0, 0, 0, 1);
-        stage.draw();
-
-        stage.getCamera().position.x += 3;
-        stage.getCamera().position.y -= 2;
+//        player1label.setColor(0, 0, 0, 1);
+//        player2label.setColor(0, 0, 0, 1);
+//        player3label.setColor(0, 0, 0, 1);
+//        player4label.setColor(0, 0, 0, 1);
+//        timeRemainingLabel.setColor(0, 0, 0, 1);
+//        stage.draw();
+//
+//        stage.getCamera().position.x += 3;
+//        stage.getCamera().position.y -= 2;
 
         player1label.setColor(1, 1, 1, 1);
         player2label.setColor(1, 1, 1, 1);
@@ -90,8 +90,8 @@ public class Hud {
         timeRemainingLabel.setColor(1, 1, 1, 1);
         stage.draw();
 
-        stage.getCamera().position.x -= 3;
-        stage.getCamera().position.y += 2;
+//        stage.getCamera().position.x -= 3;
+//        stage.getCamera().position.y += 2;
     }
 
     public void setPlayer1Score(Integer player1Score) {

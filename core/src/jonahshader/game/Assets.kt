@@ -1,7 +1,6 @@
 package jonahshader.game
 
 import com.badlogic.gdx.assets.AssetManager
-import com.badlogic.gdx.assets.loaders.FileHandleResolver
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver
 import com.badlogic.gdx.audio.Sound
 import com.badlogic.gdx.graphics.g2d.BitmapFont
@@ -24,6 +23,7 @@ class Assets {
     val death = "Sounds/death.mp3"
     //Fonts
     val loadingFont = "Fonts/visitor/visitor1.ttf"
+    val hudFont = "Fonts/visitor/visitor1.ttf"
 
     fun load() {
         manager.load(itemAtlas, TextureAtlas::class.java)
@@ -33,17 +33,26 @@ class Assets {
 
         //loading TFFs
 
-        //loadint hudFont
+        //loading hudFont
         val resolver = InternalFileHandleResolver()
         manager.setLoader<FreeTypeFontGenerator, FreeTypeFontGeneratorLoader.FreeTypeFontGeneratorParameters>(FreeTypeFontGenerator::class.java, FreeTypeFontGeneratorLoader(resolver))
         manager.setLoader<BitmapFont, FreetypeFontLoader.FreeTypeFontLoaderParameter>(BitmapFont::class.java, ".ttf", FreetypeFontLoader(resolver))
-        val hudFont = FreetypeFontLoader.FreeTypeFontLoaderParameter()
-        hudFont.fontFileName = loadingFont
-        hudFont.fontParameters.size = 36
-        manager.load(loadingFont, BitmapFont::class.java, hudFont)
+        val loadingFontParams = FreetypeFontLoader.FreeTypeFontLoaderParameter()
+        loadingFontParams.fontFileName = loadingFont
+        loadingFontParams.fontParameters.borderColor.r = 0f
+        loadingFontParams.fontParameters.borderColor.g = 0f
+        loadingFontParams.fontParameters.borderColor.b = 0f
+        loadingFontParams.fontParameters.borderWidth = 1.5f
+        loadingFontParams.fontParameters.size = 12 //TODO: loading font and hud font are the same. change font to fix
+        manager.load(loadingFont, BitmapFont::class.java, loadingFontParams)
+
+        val hudFontParams = FreetypeFontLoader.FreeTypeFontLoaderParameter()
+        hudFontParams.fontFileName = hudFont
+        hudFontParams.fontParameters.size = 1
+        manager.load(hudFont, BitmapFont::class.java, hudFontParams)
     }
 
     fun dispose() {
         manager.dispose()
     }
-}//        hudFontParams.size = 50;
+}
