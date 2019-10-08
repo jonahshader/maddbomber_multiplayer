@@ -1,16 +1,16 @@
 package jonahshader.game;
 
 import com.badlogic.gdx.graphics.Color;
-import jonahshader.game.GameItems.Bomb;
-import jonahshader.game.GameItems.Explosion;
-import jonahshader.game.GameItems.Pickups.Pickup;
-import jonahshader.game.PathFinder.PathFinder;
-import jonahshader.game.PathFinder.PointInt;
+import jonahshader.game.gameitems.Bomb;
+import jonahshader.game.gameitems.Explosion;
+import jonahshader.game.gameitems.Pickups.Pickup;
+import jonahshader.game.pathfinder.PathFinder;
+import jonahshader.game.pathfinder.PointInt;
 
 import java.util.ArrayList;
 
 import static jonahshader.game.MaddBomber.TILE_SIZE;
-import static jonahshader.game.MatchSystems.Match.invertBooleanArray;
+import static jonahshader.game.matchsystems.Match.invertBooleanArray;
 
 public class AIPlayer extends Player {
 

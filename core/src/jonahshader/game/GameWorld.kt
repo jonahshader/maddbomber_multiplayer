@@ -6,10 +6,10 @@ import com.badlogic.gdx.maps.tiled.TiledMap
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer
 import com.badlogic.gdx.maps.tiled.TmxMapLoader
 import com.badlogic.gdx.utils.Disposable
-import jonahshader.game.GameItems.Bomb
-import jonahshader.game.GameItems.Explosion
-import jonahshader.game.GameItems.Pickups.Pickup
-import jonahshader.game.NonObjects.ExplosionPropagator
+import jonahshader.game.gameitems.Bomb
+import jonahshader.game.gameitems.Explosion
+import jonahshader.game.gameitems.Pickups.Pickup
+import jonahshader.game.nonobjects.ExplosionPropagator
 
 import java.awt.*
 import java.util.ArrayList

@@ -1,4 +1,4 @@
-package jonahshader.game.Screens;
+package jonahshader.game.sccreens;
 
 import com.badlogic.gdx.Screen;
 import jonahshader.game.MaddBomber;

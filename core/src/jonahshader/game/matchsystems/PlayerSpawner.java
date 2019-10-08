@@ -1,4 +1,4 @@
-package jonahshader.game.MatchSystems;
+package jonahshader.game.matchsystems;
 
 import jonahshader.game.GameWorld;
 import jonahshader.game.Player;

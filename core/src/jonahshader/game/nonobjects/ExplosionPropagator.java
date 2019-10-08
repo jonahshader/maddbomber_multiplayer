@@ -1,4 +1,4 @@
-package jonahshader.game.NonObjects;
+package jonahshader.game.nonobjects;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import jonahshader.game.GameWorld;

@@ -1,4 +1,4 @@
-package jonahshader.game.GameItems;
+package jonahshader.game.gameitems;
 
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

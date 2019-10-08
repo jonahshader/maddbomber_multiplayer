@@ -1,4 +1,4 @@
-package jonahshader.game.MatchSystems;
+package jonahshader.game.matchsystems;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
@@ -12,11 +12,11 @@ import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import jonahshader.game.AIPlayer;
-import jonahshader.game.GameItems.Pickups.Pickup;
+import jonahshader.game.gameitems.Pickups.Pickup;
 import jonahshader.game.GameWorld;
 import jonahshader.game.MaddBomber;
 import jonahshader.game.Player;
-import jonahshader.game.Scenes.Hud;
+import jonahshader.game.scenes.Hud;
 
 import java.awt.*;
 import java.util.ArrayList;

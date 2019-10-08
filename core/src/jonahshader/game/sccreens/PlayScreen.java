@@ -1,8 +1,8 @@
-package jonahshader.game.Screens;
+package jonahshader.game.sccreens;
 
 import com.badlogic.gdx.Screen;
 import jonahshader.game.MaddBomber;
-import jonahshader.game.MatchSystems.Match;
+import jonahshader.game.matchsystems.Match;
 
 public class PlayScreen implements Screen {
     private MaddBomber game;

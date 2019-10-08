@@ -1,4 +1,4 @@
-package jonahshader.game.PathFinder;
+package jonahshader.game.pathfinder;
 
 import java.util.ArrayList;
 

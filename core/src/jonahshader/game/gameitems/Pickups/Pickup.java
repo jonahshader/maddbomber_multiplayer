@@ -1,4 +1,4 @@
-package jonahshader.game.GameItems.Pickups;
+package jonahshader.game.gameitems.Pickups;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -8,7 +8,6 @@ import jonahshader.game.MaddBomber;
 import jonahshader.game.Player;
 
 import static jonahshader.game.MaddBomber.Companion;
-import static jonahshader.game.MaddBomber.TILE_SIZE;
 
 
 public class Pickup {

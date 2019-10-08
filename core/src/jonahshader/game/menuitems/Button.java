@@ -1,4 +1,4 @@
-package jonahshader.game.MenuItems;
+package jonahshader.game.menuitems;
 
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
-import static jonahshader.game.MatchSystems.Match.getMousePosInGameWorld;
+import static jonahshader.game.matchsystems.Match.getMousePosInGameWorld;
 
 public class Button {
     float x, y;

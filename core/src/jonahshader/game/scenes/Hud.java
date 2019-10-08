@@ -1,4 +1,4 @@
-package jonahshader.game.Scenes;
+package jonahshader.game.scenes;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;

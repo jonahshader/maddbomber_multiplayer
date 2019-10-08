@@ -1,4 +1,4 @@
-package jonahshader.game.PathFinder;
+package jonahshader.game.pathfinder;
 
 public class Cell {
     public int x, y, parentX, parentY;

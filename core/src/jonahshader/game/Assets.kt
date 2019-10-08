@@ -19,17 +19,26 @@ class Assets {
     //Spritesheets
     val itemAtlas = "Spritesheets/non_tile_spritesheet.pack"
     //Sounds
-    val fuse = "Sounds/wick light.mp3"
-    val explosion = "Sounds/explosion.mp3"
-    val death = "Sounds/death.mp3"
+    val fuse = "audio/sounds/wick light.mp3"
+    val explosion = "audio/sounds/explosion.mp3"
+    val death = "audio/sounds/death.mp3"
+
+    val menuHover = "audio/sounds/menu_tick_over.ogg"
+    val menuClick = "audio/sounds/menu_tick_in.ogg"
+    val menuRelease = "audio/sounds/menu_tick_out.ogg"
+
     //Fonts
-    val loadingFont = "Fonts/visitor/visitor1.ttf"
+    val loadingFont = "Fonts/visitor1.ttf"
 
     fun load() {
         manager.load(itemAtlas, TextureAtlas::class.java)
         manager.load(fuse, Sound::class.java)
         manager.load(explosion, Sound::class.java)
         manager.load(death, Sound::class.java)
+
+        manager.load(menuHover, Sound::class.java)
+        manager.load(menuClick, Sound::class.java)
+        manager.load(menuRelease, Sound::class.java)
 
         //loading TFFs
 

@@ -12,8 +12,8 @@ import com.badlogic.gdx.maps.tiled.TiledMap
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer
 import com.badlogic.gdx.math.Intersector
 import com.badlogic.gdx.math.Rectangle
-import jonahshader.game.GameItems.Bomb
-import jonahshader.game.MatchSystems.PlayerSpawner
+import jonahshader.game.gameitems.Bomb
+import jonahshader.game.matchsystems.PlayerSpawner
 
 import java.util.ArrayList
 import kotlin.math.atan2

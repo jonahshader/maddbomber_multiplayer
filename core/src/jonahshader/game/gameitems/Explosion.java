@@ -1,11 +1,11 @@
-package jonahshader.game.GameItems;
+package jonahshader.game.gameitems;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Rectangle;
-import jonahshader.game.GameItems.Pickups.Pickup;
+import jonahshader.game.gameitems.Pickups.Pickup;
 import jonahshader.game.GameWorld;
 import jonahshader.game.MaddBomber;
 import jonahshader.game.Player;
