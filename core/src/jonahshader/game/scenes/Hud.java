@@ -33,7 +33,7 @@ public class Hud {
 
     public Hud(final MaddBomber game) {
         this.game = game;
-        font = game.getAssets().getManager().get(game.getAssets().getHudFont(), BitmapFont.class);
+        font = game.getAssets().getManager().get(game.getAssets().getLoadingFont(), BitmapFont.class);
 //        game.assets.manager.get(game.assets.fuse, Sound.class).stop(soundId);
         player1Score = 0;
         player2Score = 0;

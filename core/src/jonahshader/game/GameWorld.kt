@@ -10,6 +10,7 @@ import jonahshader.game.gameitems.Bomb
 import jonahshader.game.gameitems.Explosion
 import jonahshader.game.gameitems.Pickups.Pickup
 import jonahshader.game.nonobjects.ExplosionPropagator
+import jonahshader.game.players.Player
 
 import java.awt.*
 import java.util.ArrayList

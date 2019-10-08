@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Rectangle;
 import jonahshader.game.gameitems.Pickups.Pickup;
 import jonahshader.game.GameWorld;
 import jonahshader.game.MaddBomber;
-import jonahshader.game.Player;
+import jonahshader.game.players.Player;
 
 public class Explosion {
     public final static float EXPLOSION_TIME = 0.6f;

@@ -1,6 +1,9 @@
-package jonahshader.game;
+package jonahshader.game.players;
 
 import com.badlogic.gdx.graphics.Color;
+import jonahshader.game.ControlProfile;
+import jonahshader.game.GameWorld;
+import jonahshader.game.MaddBomber;
 import jonahshader.game.gameitems.Bomb;
 import jonahshader.game.gameitems.Explosion;
 import jonahshader.game.gameitems.Pickups.Pickup;
@@ -269,7 +272,6 @@ public class AIPlayer extends Player {
             setRightKeyDown(false);
         }
 
-//        System.out.println(state);
 
         if (bombSpawnTimeout > 0) {
             bombSpawnTimeout -= dt;

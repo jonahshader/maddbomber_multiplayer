@@ -1,4 +1,4 @@
-package jonahshader.game
+package jonahshader.game.players
 
 import com.badlogic.gdx.InputProcessor
 import com.badlogic.gdx.audio.Sound
@@ -12,6 +12,9 @@ import com.badlogic.gdx.maps.tiled.TiledMap
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer
 import com.badlogic.gdx.math.Intersector
 import com.badlogic.gdx.math.Rectangle
+import jonahshader.game.ControlProfile
+import jonahshader.game.GameWorld
+import jonahshader.game.MaddBomber
 import jonahshader.game.gameitems.Bomb
 import jonahshader.game.matchsystems.PlayerSpawner
 
@@ -19,8 +22,7 @@ import java.util.ArrayList
 import kotlin.math.atan2
 
 
-open class Player(tileX: Int, tileY: Int, //controls
-                  private val controlProfile: ControlProfile, var gameWorld: GameWorld, protected var game: MaddBomber, private val playerId: Int, private val playerColor: Color) : InputProcessor {
+open class Player(tileX: Int, tileY: Int, private val controlProfile: ControlProfile, var gameWorld: GameWorld, protected var game: MaddBomber, private val playerId: Int, private val playerColor: Color) : InputProcessor {
     //Center of player sprite
     //in world pixels
     var x: Double = 0.toDouble()
@@ -31,7 +33,7 @@ open class Player(tileX: Int, tileY: Int, //controls
     private var acceleration = ACCELERATION_REGULAR
     var bombsDeployed = 0
         private set
-    internal var maxDeployedBombs: Int = 0
+    private var maxDeployedBombs: Int = 0
     var explosionSize: Int = 0
     var score = 0
         private set

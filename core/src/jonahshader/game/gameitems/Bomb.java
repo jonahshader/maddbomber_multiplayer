@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import jonahshader.game.GameWorld;
 import jonahshader.game.MaddBomber;
-import jonahshader.game.Player;
+import jonahshader.game.players.Player;
 
 public class Bomb {
     public final static float FUSE_TIME_MAX = 1.75f; //starting time for explosion timer

@@ -11,11 +11,11 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import jonahshader.game.AIPlayer;
+import jonahshader.game.players.AIPlayer;
 import jonahshader.game.gameitems.Pickups.Pickup;
 import jonahshader.game.GameWorld;
 import jonahshader.game.MaddBomber;
-import jonahshader.game.Player;
+import jonahshader.game.players.Player;
 import jonahshader.game.scenes.Hud;
 
 import java.awt.*;
@@ -110,16 +110,6 @@ public class Match implements Disposable{
         game.getBatch().end();
 
         hud.draw();
-
-//        game.shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-//        //draw button shapes
-//        game.shapeRenderer.setProjectionMatrix(hud.getCamera().combined);
-//        game.shapeRenderer.end();
-
-//        //Start another batch for displaying text
-//        game.batch.begin();
-//        game.batch.setProjectionMatrix(hud.getCamera().combined);
-//        game.batch.end();
     }
 
     public void resize(int width, int height) {

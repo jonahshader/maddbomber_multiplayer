@@ -1,7 +1,7 @@
 package jonahshader.game.matchsystems;
 
 import jonahshader.game.GameWorld;
-import jonahshader.game.Player;
+import jonahshader.game.players.Player;
 
 import java.awt.*;
 import java.util.ArrayList;

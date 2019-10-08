@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
 import jonahshader.game.MaddBomber;
-import jonahshader.game.Player;
+import jonahshader.game.players.Player;
 
 import static jonahshader.game.MaddBomber.Companion;
 
