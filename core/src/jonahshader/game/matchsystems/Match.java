@@ -70,13 +70,13 @@ public class Match implements Disposable{
                 1,
                 new Color(0.75f, 0.75f, 1f, 1f)));
 
-        addPlayer(new AIPlayer(2, 13, game.getControls().getControlProfile(0), gameWorld, game, 2, new Color(1, 0.2f, 0.8f, 1f)));
-        addPlayer(new AIPlayer(21, 2, game.getControls().getControlProfile(0), gameWorld, game, 3, new Color(0.1f, 0.2f, 0.3f, 0.8f)));
+//        addPlayer(new AIPlayer(2, 13, game.getControls().getControlProfile(0), gameWorld, game, 2, new Color(1, 0.2f, 0.8f, 1f)));
+//        addPlayer(new AIPlayer(21, 2, game.getControls().getControlProfile(0), gameWorld, game, 3, new Color(0.1f, 0.2f, 0.3f, 0.8f)));
 //        gameWorld.getPlayers().get(2).getSpawner().requestRespawn();
 ////        gameWorld.getPlayers().get(3).getSpawner().requestRespawn();
-        for (int i = 0; i < 4; i++) {
-            addPlayer(new AIPlayer(14, 1, game.getControls().getControlProfile(0), gameWorld, game, 3, new Color((float) Math.random(), (float) Math.random(), (float) Math.random(), 1f)));
-        }
+//        for (int i = 0; i < 4; i++) {
+//            addPlayer(new AIPlayer(14, 1, game.getControls().getControlProfile(0), gameWorld, game, 3, new Color((float) Math.random(), (float) Math.random(), (float) Math.random(), 1f)));
+//        }
 
 
 

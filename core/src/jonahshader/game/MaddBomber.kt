@@ -45,6 +45,7 @@ class MaddBomber : Game() {
 
     override fun dispose() {
         batch.dispose()
+        shapeRenderer.dispose()
         assets.dispose()
     }
 
