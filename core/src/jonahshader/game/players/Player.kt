@@ -181,16 +181,17 @@ open class Player(tileX: Int, tileY: Int, private val controlProfile: ControlPro
 
     open fun kill(killer: Player, cause: String) {
         spawner.requestRespawn()
-        if (isSpawned)
+        if (isSpawned) {
             if (killer === this) {
-                killer.givePoints(-1) // you killed your self... -1 point
+                killer.givePoints(-1) // you killed yourself... -1 point
             } else {
                 killer.givePoints(1)
             }
+        }
         resetStats()
         isSpawned = false
         println(cause)
-        game.assets.manager.get(game.assets.death, Sound::class.java).play(0.27f, 1f, ((x / MaddBomber.TILE_SIZE / gameWorld.mapProperties.get("width", Int::class.java) - 0.5f) * 1f).toFloat())
+        game.assets.manager.get(game.assets.death, Sound::class.java).play(0.27f, 0.8f + Math.random().toFloat() * 0.4f, ((x / MaddBomber.TILE_SIZE / gameWorld.mapProperties.get("width", Int::class.java) - 0.5f) * 1f).toFloat())
     }
 
     fun respawn(spawnTileX: Int, spawnTileY: Int) {
@@ -449,6 +450,13 @@ open class Player(tileX: Int, tileY: Int, private val controlProfile: ControlPro
         bombsIgnored.removeIf{ it.isUsed }
     }
 
+    fun draw(batch: SpriteBatch) {
+        if (isSpawned) {
+            sprite.color = playerColor
+            sprite.draw(batch)
+        }
+    }
+
     private fun checkBombCollision() {
         for (i in bombsIgnored.indices.reversed()) {
             if (!Intersector.overlaps(hitbox, bombsIgnored[i].hitbox)) {
@@ -478,13 +486,6 @@ open class Player(tileX: Int, tileY: Int, private val controlProfile: ControlPro
         acceleration = ACCELERATION_REGULAR
         maxDeployedBombs = 1
         explosionSize = 1
-    }
-
-    fun draw(batch: SpriteBatch) {
-        if (isSpawned) {
-            sprite.color = playerColor
-            sprite.draw(batch)
-        }
     }
 
     fun addBombToIgnore(bomb: Bomb) {
@@ -537,7 +538,7 @@ open class Player(tileX: Int, tileY: Int, private val controlProfile: ControlPro
     companion object {
 
         internal val ACCELERATION_REGULAR = 10.0
-        internal val INITIAL_SPEED = 1.2
+        internal val INITIAL_SPEED = 1.3
         internal val MAX_SPEED = 10.0
         private val width = 24.0 //26
         private val height = 24.0
