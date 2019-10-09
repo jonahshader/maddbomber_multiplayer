@@ -19,7 +19,7 @@ class GameServer(port: Int) {
 //                        con?.sendTCP(`object`)
 //                }
 
-                if (`object` is RegisterNewPlayer) {
+                if (`object` is RegisterNewPlayerPacket) {
                     // ask match if there is room for another player,
                     // if there is, send match the RegisterNewPlayer and have it generate a reply ID
                     // send that ID to the new client

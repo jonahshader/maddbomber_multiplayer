@@ -10,7 +10,7 @@ import jonahshader.game.MaddBomber;
 import jonahshader.game.players.Player;
 
 public class Bomb {
-    public final static float FUSE_TIME_MAX = 1.75f; //starting time for explosion timer
+    public final static float FUSE_TIME_MAX = 2f; //starting time for explosion timer
 
     private float timeRemaining;
     private int tileX, tileY;
@@ -26,14 +26,13 @@ public class Bomb {
 
     private long soundId;
 
-    public Bomb(int tileX, int tileY, TextureAtlas itemAtlas, int explosionSize, boolean playerControl, Player owner, GameWorld gameWorld, MaddBomber game) {
+    public Bomb(int tileX, int tileY, int explosionSize, Player owner, GameWorld gameWorld, MaddBomber game) {
         this.tileX = tileX;
         this.tileY = tileY;
-        this.playerControl = playerControl;
         this.explosionSize = explosionSize;
         this.owner = owner;
         this.gameWorld = gameWorld;
-        this.itemAtlas = itemAtlas;
+        this.itemAtlas = game.assets.getManager().get(game.assets.getItemAtlas(), TextureAtlas.class);
         this.game = game;
 
         timeRemaining = FUSE_TIME_MAX;

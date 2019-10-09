@@ -507,7 +507,7 @@ open class Player(tileX: Int, tileY: Int, private val controlProfile: ControlPro
             }
             //If not, place a bomb
             if (!bombExists) {
-                val newBomb = Bomb(tileX, tileY, itemAtlas, explosionSize, false, this, gameWorld, game)
+                val newBomb = Bomb(tileX, tileY, explosionSize, this, gameWorld, game)
                 bombs.add(newBomb)
                 gameWorld.addBomb(newBomb)
                 bombsDeployed++
