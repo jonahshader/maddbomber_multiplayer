@@ -27,8 +27,8 @@ class Menu(private val font: BitmapFont, private val firstX: Float, private val 
     private var arrowKeysLast: Boolean = false
 
     init {
+        game.multiplexer.addProcessor(this)
         arrowKeysLast = false
-
         menuItems = ArrayList()
     }
 
@@ -57,10 +57,9 @@ class Menu(private val font: BitmapFont, private val firstX: Float, private val 
             game.assets.manager.get(game.assets.menuHover, Sound::class.java).play(.35f)
         } else if (keycode == Input.Keys.ENTER) {
             if (index > -1) {
-                menuItems[index].menuAction.executeAction()
+                executeActionAtIndex()
                 game.assets.manager.get(game.assets.menuClick, Sound::class.java).play(.5f)
             }
-
         } else {
             return false // keycode unused
         }
@@ -88,7 +87,7 @@ class Menu(private val font: BitmapFont, private val firstX: Float, private val 
         mouseMoved(screenX, screenY)
         return if (index > -1) {
             game.assets.manager.get(game.assets.menuClick, Sound::class.java).play(.5f)
-            menuItems[index].menuAction.executeAction()
+            executeActionAtIndex()
             true
         } else {
             false
@@ -128,6 +127,14 @@ class Menu(private val font: BitmapFont, private val firstX: Float, private val 
         }
     }
 
+    private fun executeActionAtIndex() {
+        if (menuItems[index].menuAction.executeAction()) {
+            // action ran successfully
+            // for now, this means that we are assuming we are leaving the menu
+            game.multiplexer.removeProcessor(this)
+        }
+    }
+
     private val X_SELECTED_EXTENTION = 24.0
     inner class MenuItem(val menuAction: MenuAction, private val label: String, val id: Int) {
         private val selected = false
@@ -149,6 +156,5 @@ class Menu(private val font: BitmapFont, private val firstX: Float, private val 
         fun isMouseOver(pos: Vector2): Boolean {
             return pos.x >= firstX && pos.y < firstY - (id - 0.25) * itemHeight && pos.y > firstY - (id + 0.75) * itemHeight
         }
-
     }
 }

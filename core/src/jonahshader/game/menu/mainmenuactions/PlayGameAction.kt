@@ -6,7 +6,8 @@ import jonahshader.game.screens.PlayScreen
 
 
 class PlayGameAction(private val game: MaddBomber) : MenuAction {
-    override fun executeAction() {
+    override fun executeAction() : Boolean {
         game.screen = PlayScreen(game)
+        return true
     }
 }

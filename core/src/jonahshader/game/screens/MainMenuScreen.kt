@@ -30,8 +30,6 @@ class MainMenuScreen(val game: MaddBomber) : Screen {
         menu.addMenuItem(PlayGameAction(game), "Play Game")
         menu.addMenuItem(SettingsAction(), "Settings")
         menu.addMenuItem(ExitGameAction(), "Exit")
-
-        game.multiplexer.addProcessor(menu)
     }
 
     override fun show() {

@@ -1,5 +1,5 @@
 package jonahshader.game.menu
 
 interface MenuAction {
-    fun executeAction()
+    fun executeAction() : Boolean
 }
