@@ -49,16 +49,16 @@ class Menu(private val font: BitmapFont, private val firstX: Float, private val 
         if (keycode == Input.Keys.UP) {
             index--
             arrowKeysLast = true
-            game.assets.manager.get(game.assets.menuHover, Sound::class.java).play()
+            game.assets.manager.get(game.assets.menuHover, Sound::class.java).play(.35f)
 
         } else if (keycode == Input.Keys.DOWN) {
             index++
             arrowKeysLast = true
-            game.assets.manager.get(game.assets.menuHover, Sound::class.java).play()
+            game.assets.manager.get(game.assets.menuHover, Sound::class.java).play(.35f)
         } else if (keycode == Input.Keys.ENTER) {
             if (index > -1) {
                 menuItems[index].menuAction.executeAction()
-                game.assets.manager.get(game.assets.menuClick, Sound::class.java).play()
+                game.assets.manager.get(game.assets.menuClick, Sound::class.java).play(.5f)
             }
 
         } else {
@@ -86,12 +86,12 @@ class Menu(private val font: BitmapFont, private val firstX: Float, private val 
 
     override fun touchDown(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean {
         mouseMoved(screenX, screenY)
-        if (index > -1) {
-            game.assets.manager.get(game.assets.menuClick, Sound::class.java).play()
+        return if (index > -1) {
+            game.assets.manager.get(game.assets.menuClick, Sound::class.java).play(.5f)
             menuItems[index].menuAction.executeAction()
-            return true
+            true
         } else {
-            return false
+            false
         }
     }
 
@@ -107,7 +107,7 @@ class Menu(private val font: BitmapFont, private val firstX: Float, private val 
         for (menuItem in menuItems) {
             if (menuItem.isMouseOver(viewport.unproject(Vector2(Gdx.input.x.toFloat(), Gdx.input.y.toFloat())))) {
                 if (index != menuItem.id)
-                    game.assets.manager.get(game.assets.menuHover, Sound::class.java).play()
+                    game.assets.manager.get(game.assets.menuHover, Sound::class.java).play(.35f)
                 index = menuItem.id
                 arrowKeysLast = false
                 return true

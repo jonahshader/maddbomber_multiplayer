@@ -1,48 +1,75 @@
-package jonahshader.game.sccreens;
+package jonahshader.game.screens
 
-import com.badlogic.gdx.Screen;
-import jonahshader.game.MaddBomber;
+import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.Screen
+import com.badlogic.gdx.graphics.GL20
+import com.badlogic.gdx.graphics.OrthographicCamera
+import com.badlogic.gdx.graphics.g2d.BitmapFont
+import com.badlogic.gdx.utils.viewport.FitViewport
+import jonahshader.game.MaddBomber
+import jonahshader.game.menu.Menu
+import jonahshader.game.menu.mainmenuactions.ExitGameAction
+import jonahshader.game.menu.mainmenuactions.PlayGameAction
+import jonahshader.game.menu.mainmenuactions.SettingsAction
 
-public class MainMenuScreen implements Screen{
-    private MaddBomber game;
+class MainMenuScreen(val game: MaddBomber) : Screen {
+    private val width = 1280
+    private val height = 720
 
-    public MainMenuScreen(MaddBomber game) {
+    private val camera = OrthographicCamera()
+    private val viewport = FitViewport(width.toFloat(), height.toFloat(), camera)
+
+    private var menu: Menu
+
+    init {
+//        val param = FreeTypeFontGenerator.FreeTypeFontParameter()
+//        param.size = 148
+        val mainFont = game.assets.manager.get(game.assets.loadingFont, BitmapFont::class.java)
+
+        menu = Menu(mainFont, (-width/2f) + 90f, 150f, 90f, game, viewport)
+        menu.addMenuItem(PlayGameAction(game), "Play Game")
+        menu.addMenuItem(SettingsAction(), "Settings")
+        menu.addMenuItem(ExitGameAction(), "Exit")
+
+        game.multiplexer.addProcessor(menu)
+    }
+
+    override fun show() {
 
     }
 
+    override fun render(delta: Float) {
+        menu.run(delta)
 
-    @Override
-    public void show() {
+        // clear background
+        Gdx.gl.glClearColor(0f, 0f, 0f, 1f)
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
+
+        // render
+        viewport.apply()
+        game.batch.projectionMatrix = viewport.camera.combined
+        game.batch.begin()
+        menu.draw()
+        game.batch.end()
+    }
+
+    override fun resize(width: Int, height: Int) {
+        viewport.update(width, height)
+    }
+
+    override fun pause() {
 
     }
 
-    @Override
-    public void render(float delta) {
+    override fun resume() {
 
     }
 
-    @Override
-    public void resize(int width, int height) {
+    override fun hide() {
 
     }
 
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
-    @Override
-    public void dispose() {
+    override fun dispose() {
 
     }
 }

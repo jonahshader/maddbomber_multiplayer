@@ -1,9 +1,11 @@
 package jonahshader.game
 
 import com.badlogic.gdx.Game
+import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.InputMultiplexer
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
-import jonahshader.game.sccreens.PlayScreen
+import jonahshader.game.screens.MainMenuScreen
 
 /*
 How to make a map in Tiled Editor:
@@ -22,6 +24,7 @@ class MaddBomber : Game() {
     lateinit var shapeRenderer: ShapeRenderer
     lateinit var controls: ControlManager
     lateinit var assets: Assets
+    lateinit var multiplexer: InputMultiplexer
 
     override fun create() {
         assets = Assets()
@@ -40,7 +43,9 @@ class MaddBomber : Game() {
         batch = SpriteBatch()    //Main sprite batch
         shapeRenderer = ShapeRenderer()
         controls = ControlManager()
-        setScreen(PlayScreen(this))
+        multiplexer = InputMultiplexer()
+        Gdx.input.inputProcessor = multiplexer
+        setScreen(MainMenuScreen(this))
     }
 
     override fun dispose() {
