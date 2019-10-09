@@ -29,8 +29,8 @@ open class Player(tileX: Int, tileY: Int, private val controlProfile: ControlPro
     var y: Double = 0.toDouble()
     var xSpeed: Double = 0.toDouble()
     var ySpeed: Double = 0.toDouble()
-    private var maxSpeedCurrent: Double = 0.toDouble()
-    private var acceleration = ACCELERATION_REGULAR
+    var maxSpeedCurrent: Double = 0.toDouble()
+    var acceleration = ACCELERATION_REGULAR
     var bombsDeployed = 0
         private set
     private var maxDeployedBombs: Int = 0

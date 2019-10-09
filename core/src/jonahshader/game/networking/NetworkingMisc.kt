@@ -9,7 +9,7 @@ class RegisterNewPlayerPacket(val name: String, val r: Float, val g: Float, val 
 class ID(val userId: Int)
 class UpdateMovementPacket(val userId: Int, val x: Float, val y: Float,
                            val xSpeed: Float, val ySpeed: Float,
-                           val leftRight: Float, val upDown: Float)
+                           val up: Boolean, val down: Boolean, val left: Boolean, val right: Boolean)
 class CreateBombPacket(val userId: Int, val tileX: Int, val tileY: Int, val explosionSize: Int)
 class KillPlayerPacket(val killedId: Int, killerId: Int)
 class UpdateStatsPacket(val maxSpd: Float, val acceleration: Float)
