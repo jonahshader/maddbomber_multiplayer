@@ -20,7 +20,7 @@ class GameClient(ip: String, port: Int) {
         })
     }
 
-    fun register(regPacket: RegisterNewPlayerPacket) {
+    fun registerPlayer(regPacket: RegisterNewPlayerPacket) {
         client.sendTCP(regPacket)
     }
 }

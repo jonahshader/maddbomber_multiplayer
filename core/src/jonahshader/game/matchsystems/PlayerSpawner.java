@@ -13,7 +13,6 @@ public class PlayerSpawner {
 
     private GameWorld gameWorld; //Where the players are spawned
     private Player parentPlayer;
-    private int playerId;
 
     public PlayerSpawner(GameWorld gameWorld, Player parentPlayer) {
         this.gameWorld = gameWorld;

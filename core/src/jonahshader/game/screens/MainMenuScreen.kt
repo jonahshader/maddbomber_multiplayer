@@ -11,6 +11,7 @@ import jonahshader.game.menu.Menu
 import jonahshader.game.menu.mainmenuactions.ExitGameAction
 import jonahshader.game.menu.mainmenuactions.PlayGameAction
 import jonahshader.game.menu.mainmenuactions.SettingsAction
+import jonahshader.game.menu.multiplayermenuactions.PlayMultiplayerAction
 
 class MainMenuScreen(val game: MaddBomber) : Screen {
     private val width = 1280
@@ -27,7 +28,8 @@ class MainMenuScreen(val game: MaddBomber) : Screen {
         val mainFont = game.assets.manager.get(game.assets.loadingFont, BitmapFont::class.java)
 
         menu = Menu(mainFont, (-width/2f) + 90f, 150f, 90f, game, viewport)
-        menu.addMenuItem(PlayGameAction(game), "Play Game")
+        menu.addMenuItem(PlayGameAction(game), "Play Singleplayer")
+        menu.addMenuItem(PlayMultiplayerAction(menu), "Play Multiplayer")
         menu.addMenuItem(SettingsAction(), "Settings")
         menu.addMenuItem(ExitGameAction(), "Exit")
     }

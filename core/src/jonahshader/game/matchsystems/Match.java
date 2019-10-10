@@ -29,16 +29,14 @@ public class Match implements Disposable{
     private Viewport gamePort;
     private Hud hud;
     private InputMultiplexer multiplexer;
-    private int playerCount;
 
     //Map stuff
     private GameWorld gameWorld;
     private OrthogonalTiledMapRenderer mapRenderer;
 
     //TODO: put more stuff in this constructor, like a ControlProfile array, map, playerTexture array, etc.
-    public Match(MaddBomber game, int playerCount, String mapFileName) {
+    public Match(MaddBomber game, String mapFileName) {
         this.game = game;
-        this.playerCount = playerCount;
         gameCam = new OrthographicCamera(MaddBomber.V_WIDTH, MaddBomber.V_HEIGHT);
         hud = new Hud(game);
         gameWorld = new GameWorld(mapFileName);

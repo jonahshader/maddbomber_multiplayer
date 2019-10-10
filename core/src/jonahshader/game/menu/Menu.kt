@@ -12,11 +12,10 @@ import com.badlogic.gdx.utils.viewport.Viewport
 import jonahshader.game.MaddBomber
 
 import java.util.ArrayList
-
 import jonahshader.game.interpolate
 
 
-class Menu(private val font: BitmapFont, private val firstX: Float, private val firstY: Float, private val itemHeight: Float, internal val game: MaddBomber, internal val viewport: Viewport) : InputProcessor {
+class Menu(val font: BitmapFont, val firstX: Float, val firstY: Float, val itemHeight: Float, val game: MaddBomber, val viewport: Viewport) : InputProcessor {
     private val menuItems: ArrayList<MenuItem>
 
     internal val batch: SpriteBatch = game.batch

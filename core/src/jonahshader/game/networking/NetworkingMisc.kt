@@ -1,5 +1,6 @@
 package jonahshader.game.networking
 
+import com.esotericsoftware.kryo.Kryo
 import jonahshader.game.gameitems.Pickups.Pickup
 
 // packets
@@ -20,3 +21,14 @@ with the pickup. i guess for now this can be left out but it will need
 to be added in the future
  */
 //TODO: add player disconnected packet
+
+
+fun registerClasses(kryo: Kryo) {
+    kryo.register(RegisterNewPlayerPacket::class.java)
+    kryo.register(ID::class.java)
+    kryo.register(UpdateMovementPacket::class.java)
+    kryo.register(CreateBombPacket::class.java)
+    kryo.register(KillPlayerPacket::class.java)
+    kryo.register(UpdateStatsPacket::class.java)
+    kryo.register(SpawnPickupPacket::class.java)
+}
