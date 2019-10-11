@@ -5,6 +5,8 @@ import com.badlogic.gdx.Input
 import jonahshader.game.MaddBomber
 import jonahshader.game.menu.Menu
 import jonahshader.game.menu.MenuAction
+import jonahshader.game.menu.mainmenuactions.PlayGameAction
+import jonahshader.game.menu.mainmenuactions.SettingsAction
 
 class CreateServerAction(private val game: MaddBomber) : MenuAction {
     override fun executeAction(): Boolean {
@@ -71,9 +73,19 @@ class JoinServerAction(private val game: MaddBomber) : MenuAction {
 
 class PlayMultiplayerAction(private var menu: Menu) : MenuAction {
     override fun executeAction(): Boolean {
-        menu = Menu(menu.font, menu.firstX, menu.firstY, menu.itemHeight, menu.game, menu.viewport)
+        menu.clearMenuItems()
         menu.addMenuItem(JoinServerAction(menu.game), "Join Server")
         menu.addMenuItem(CreateServerAction(menu.game), "Create Server")
-        return true
+        menu.addMenuItem(object : MenuAction {
+            override fun executeAction(): Boolean {
+                menu.clearMenuItems()
+                menu.addMenuItem(PlayGameAction(menu.game), "Play Singleplayer")
+                menu.addMenuItem(PlayMultiplayerAction(menu), "Play Multiplayer")
+                menu.addMenuItem(SettingsAction(), "Settings")
+                return false
+            }
+
+        }, "Back")
+        return false
     }
 }

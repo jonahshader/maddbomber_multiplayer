@@ -134,6 +134,10 @@ class Menu(val font: BitmapFont, val firstX: Float, val firstY: Float, val itemH
         }
     }
 
+    fun clearMenuItems() {
+        menuItems.clear()
+    }
+
     private val X_SELECTED_EXTENTION = 24.0
     inner class MenuItem(val menuAction: MenuAction, private val label: String, val id: Int) {
         private val selected = false
