@@ -7,15 +7,29 @@ import jonahshader.game.menu.Menu
 import jonahshader.game.menu.MenuAction
 import jonahshader.game.menu.mainmenuactions.PlayGameAction
 import jonahshader.game.menu.mainmenuactions.SettingsAction
+import java.text.NumberFormat
+import javax.swing.JFormattedTextField
+import javax.swing.JFrame
+import javax.swing.JLabel
+import javax.swing.JOptionPane
 
 class CreateServerAction(private val game: MaddBomber) : MenuAction {
     override fun executeAction(): Boolean {
+        val portString = JOptionPane.showInputDialog(JFrame(), "Enter Port:")
+
+        // create server with port 25565
+
         return true
     }
 }
 
 class JoinServerAction(private val game: MaddBomber) : MenuAction {
     override fun executeAction(): Boolean {
+        val ipString = JOptionPane.showInputDialog(JFrame(), "Enter IP (without port):")
+        val portString = JOptionPane.showInputDialog(JFrame(), "Enter Port:")
+
+        // join server with address
+
         return true
     }
 }
