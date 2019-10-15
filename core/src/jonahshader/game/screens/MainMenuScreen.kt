@@ -23,8 +23,6 @@ class MainMenuScreen(val game: MaddBomber) : Screen {
     private var menu: Menu
 
     init {
-//        val param = FreeTypeFontGenerator.FreeTypeFontParameter()
-//        param.size = 148
         val mainFont = game.assets.manager.get(game.assets.loadingFont, BitmapFont::class.java)
 
         menu = Menu(mainFont, (-width/2f) + 90f, 150f, 90f, game, viewport)
