@@ -3,7 +3,6 @@ package jonahshader.game.matchsystems;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -11,7 +10,6 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import jonahshader.game.players.AIPlayer;
 import jonahshader.game.gameitems.Pickups.Pickup;
 import jonahshader.game.GameWorld;
 import jonahshader.game.MaddBomber;
@@ -29,14 +27,16 @@ public class Match implements Disposable{
     private Viewport gamePort;
     private Hud hud;
     private InputMultiplexer multiplexer;
+    private boolean master;
 
     //Map stuff
-    private GameWorld gameWorld;
+    public GameWorld gameWorld;
     private OrthogonalTiledMapRenderer mapRenderer;
 
     //TODO: put more stuff in this constructor, like a ControlProfile array, map, playerTexture array, etc.
-    public Match(MaddBomber game, String mapFileName) {
+    public Match(MaddBomber game, String mapFileName, boolean master) {
         this.game = game;
+        this.master = master;
         gameCam = new OrthographicCamera(MaddBomber.V_WIDTH, MaddBomber.V_HEIGHT);
         hud = new Hud(game);
         gameWorld = new GameWorld(mapFileName);
@@ -49,24 +49,6 @@ public class Match implements Disposable{
         multiplexer = new InputMultiplexer();
         Gdx.input.setInputProcessor(multiplexer);
 
-        //temp: add a player to the map
-        addPlayer(new Player(
-                2,
-                2,
-                game.getControls().getControlProfile(0),
-                gameWorld,
-                game,
-                0,
-                new Color(1f, 0.75f, 0.75f, 1f)));
-
-        addPlayer(new AIPlayer(
-                21,
-                13,
-                game.getControls().getControlProfile(1),
-                gameWorld,
-                game,
-                1,
-                new Color(0.75f, 0.75f, 1f, 1f)));
 
 //        addPlayer(new AIPlayer(2, 13, game.getControls().getControlProfile(0), gameWorld, game, 2, new Color(1, 0.2f, 0.8f, 1f)));
 //        addPlayer(new AIPlayer(21, 2, game.getControls().getControlProfile(0), gameWorld, game, 3, new Color(0.1f, 0.2f, 0.3f, 0.8f)));

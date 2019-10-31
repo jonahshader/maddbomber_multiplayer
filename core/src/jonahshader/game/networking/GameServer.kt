@@ -4,10 +4,11 @@ import com.esotericsoftware.kryonet.Connection
 import com.esotericsoftware.kryonet.Listener
 import com.esotericsoftware.kryonet.Server
 
-class GameServer(port: Int) {
+object GameServer {
     private val server = Server()
 
-    init {
+    fun startServer(port: Int) {
+        registerClasses(server.kryo)
         server.start()
         server.bind(port, port)
 
@@ -27,5 +28,10 @@ class GameServer(port: Int) {
                 }
             }
         })
+    }
+
+    // moves server from lobby to playing game
+    fun startGame() {
+        // notify all clients that the game started
     }
 }
