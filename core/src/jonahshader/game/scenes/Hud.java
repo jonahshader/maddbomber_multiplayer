@@ -23,25 +23,22 @@ public class Hud {
     private Integer player2Score;
     private Integer player3Score;
     private Integer player4Score;
-    private Double timeRemaining;
 
-    Label player1label;
-    Label player2label;
-    Label player3label;
-    Label player4label;
-    Label timeRemainingLabel;
+    private Label player1label;
+    private Label player2label;
+    private Label player3label;
+    private Label player4label;
 
     public Hud(final MaddBomber game) {
         this.game = game;
         font = game.getAssets().getManager().get(game.getAssets().getLoadingFont(), BitmapFont.class);
         font.getData().scaleX = 0.4f;
         font.getData().scaleY = 0.4f;
-        //        game.assets.manager.get(game.assets.fuse, Sound.class).stop(soundId);
+
         player1Score = 0;
         player2Score = 0;
         player3Score = 0;
         player4Score = 0;
-        timeRemaining = 300.0; //TODO: parameterize
 
         cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), cam);
@@ -55,14 +52,12 @@ public class Hud {
         player2label = new Label("Player 2 Score", new Label.LabelStyle(font, Color.WHITE));
         player3label = new Label("Player 3 Score", new Label.LabelStyle(font, Color.WHITE));
         player4label = new Label("Player 4 Score", new Label.LabelStyle(font, Color.WHITE));
-        timeRemainingLabel = new Label("Time Remaining ", new Label.LabelStyle(font, Color.WHITE));
 
         table.add(player1label).expandX().padTop(2);
         table.add(player2label).expandX().padTop(2);
         table.add(player3label).expandX().padTop(2);
         table.add(player4label).expandX().padTop(2);
         table.row();
-        table.add(timeRemainingLabel).padLeft(16).expandX().padTop(2);
 
         stage.addActor(table);
     }
@@ -75,25 +70,23 @@ public class Hud {
     }
 
     public void draw() {
-//        player1label.setColor(0, 0, 0, 1);
-//        player2label.setColor(0, 0, 0, 1);
-//        player3label.setColor(0, 0, 0, 1);
-//        player4label.setColor(0, 0, 0, 1);
-//        timeRemainingLabel.setColor(0, 0, 0, 1);
-//        stage.draw();
-//
-//        stage.getCamera().position.x += 3;
-//        stage.getCamera().position.y -= 2;
+        stage.getCamera().position.x -= 2;
+        stage.getCamera().position.y -= 1;
+
+        player1label.setColor(0, 0, 0, 1);
+        player2label.setColor(0, 0, 0, 1);
+        player3label.setColor(0, 0, 0, 1);
+        player4label.setColor(0, 0, 0, 1);
+        stage.draw();
+
+        stage.getCamera().position.x += 2;
+        stage.getCamera().position.y += 1;
 
         player1label.setColor(1, 1, 1, 1);
         player2label.setColor(1, 1, 1, 1);
         player3label.setColor(1, 1, 1, 1);
         player4label.setColor(1, 1, 1, 1);
-        timeRemainingLabel.setColor(1, 1, 1, 1);
         stage.draw();
-
-//        stage.getCamera().position.x -= 3;
-//        stage.getCamera().position.y += 2;
     }
 
     public void setPlayer1Score(Integer player1Score) {
@@ -112,11 +105,4 @@ public class Hud {
         this.player4Score = player4Score;
     }
 
-    public void setTimeRemaining(Double timeRemaining) {
-        this.timeRemaining = timeRemaining;
-    }
-
-    public Camera getCamera() {
-        return cam;
-    }
 }
