@@ -24,7 +24,7 @@ class GameWorld(mapFileName: String) : Disposable {
     val bombs: ArrayList<Bomb> = ArrayList()
     val explosions: ArrayList<Explosion> = ArrayList()
     val pickups: ArrayList<Pickup> = ArrayList()
-    val players: ArrayList<Player> = ArrayList()
+    val players = HashMap<Int, Player>()
 
     /**
      *
@@ -90,7 +90,7 @@ class GameWorld(mapFileName: String) : Disposable {
     }
 
     fun update(deltaTime: Float) {
-        for (player in players) {
+        for ((_, player) in players) {
             player.run(deltaTime)
         }
         for (bomb in bombs) {
@@ -113,7 +113,7 @@ class GameWorld(mapFileName: String) : Disposable {
             bomb.draw(batch)
         }
 
-        for (player in players) {
+        for ((_, player) in players) {
             player.draw(batch)
         }
 
@@ -128,7 +128,7 @@ class GameWorld(mapFileName: String) : Disposable {
 
     fun addBomb(bomb: Bomb) {
         bombs.add(bomb)
-        for (player in players) {
+        for ((_, player) in players) {
             player.addBombToIgnore(bomb)
         }
     }

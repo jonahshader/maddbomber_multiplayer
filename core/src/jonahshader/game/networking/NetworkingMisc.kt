@@ -15,6 +15,8 @@ class CreateBombPacket(val userId: Int, val tileX: Int, val tileY: Int, val expl
 class KillPlayerPacket(val killedId: Int, killerId: Int)
 class UpdateStatsPacket(val maxSpd: Float, val acceleration: Float)
 class SpawnPickupPacket(val x: Int, val y: Int, val pickup: Pickup.PickupType)
+class StartGamePacket
+class SpawnPlayerPacket(val x: Int, val y: Int, id: Int)
 /* maybe add remove pickup packet?? in case of the networking resolution not
 being high enough on the player's position to successfully identify the collision
 with the pickup. i guess for now this can be left out but it will need
@@ -31,4 +33,6 @@ fun registerClasses(kryo: Kryo) {
     kryo.register(KillPlayerPacket::class.java)
     kryo.register(UpdateStatsPacket::class.java)
     kryo.register(SpawnPickupPacket::class.java)
+    kryo.register(StartGamePacket::class.java)
+    kryo.register(SpawnPlayerPacket::class.java)
 }

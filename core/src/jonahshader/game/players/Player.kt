@@ -58,6 +58,8 @@ open class Player(tileX: Int, tileY: Int, private val controlProfile: ControlPro
     var placeKeyDown: Boolean = false
     var activateKeyDown: Boolean = false
 
+    var networkId = -1
+
     private val wallColliding: Boolean
         get() {
             val walls = map.layers.get("Walls") as TiledMapTileLayer

@@ -14,17 +14,17 @@ class ServerNetworkPlayer(tileX: Int, tileY: Int,
 
     fun applyPacket(packet: Any) {
         if (packet is UpdateMovementPacket) {
-            this.upKeyDown = packet.up
-            this.downKeyDown = packet.down
-            this.leftKeyDown = packet.left
-            this.rightKeyDown = packet.right
-            this.x = packet.x.toDouble()
-            this.y = packet.y.toDouble()
-            this.xSpeed = packet.xSpeed.toDouble()
-            this.ySpeed = packet.ySpeed.toDouble()
+            upKeyDown = packet.up
+            downKeyDown = packet.down
+            leftKeyDown = packet.left
+            rightKeyDown = packet.right
+            x = packet.x.toDouble()
+            y = packet.y.toDouble()
+            xSpeed = packet.xSpeed.toDouble()
+            ySpeed = packet.ySpeed.toDouble()
         } else if (packet is UpdateStatsPacket) {
-            this.maxSpeedCurrent = packet.maxSpd.toDouble()
-            this.acceleration = packet.acceleration.toDouble()
+            maxSpeedCurrent = packet.maxSpd.toDouble()
+            acceleration = packet.acceleration.toDouble()
         }
     }
 }
