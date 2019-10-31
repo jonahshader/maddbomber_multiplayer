@@ -4,10 +4,10 @@ import com.esotericsoftware.kryonet.Client
 import com.esotericsoftware.kryonet.Connection
 import com.esotericsoftware.kryonet.Listener
 
-class GameClient(ip: String, port: Int) {
-    val client = Client()
+object GameClient {
+    private val client = Client()
 
-    init {
+    fun startClient(ip: String, port: Int) {
         client.start()
         client.connect(5000, ip, port, port)
 

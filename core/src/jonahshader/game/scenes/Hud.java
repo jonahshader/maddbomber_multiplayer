@@ -34,7 +34,9 @@ public class Hud {
     public Hud(final MaddBomber game) {
         this.game = game;
         font = game.getAssets().getManager().get(game.getAssets().getLoadingFont(), BitmapFont.class);
-//        game.assets.manager.get(game.assets.fuse, Sound.class).stop(soundId);
+        font.getData().scaleX = 0.4f;
+        font.getData().scaleY = 0.4f;
+        //        game.assets.manager.get(game.assets.fuse, Sound.class).stop(soundId);
         player1Score = 0;
         player2Score = 0;
         player3Score = 0;

@@ -1,82 +1,73 @@
-package jonahshader.game.screens;
+package jonahshader.game.screens
 
-import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
-import jonahshader.game.MaddBomber;
-import jonahshader.game.matchsystems.Match;
-import jonahshader.game.networking.GameClient;
-import jonahshader.game.networking.GameServer;
-import jonahshader.game.players.AIPlayer;
-import jonahshader.game.players.Player;
+import com.badlogic.gdx.Screen
+import com.badlogic.gdx.graphics.Color
+import jonahshader.game.MaddBomber
+import jonahshader.game.matchsystems.Match
+import jonahshader.game.players.AIPlayer
+import jonahshader.game.players.Player
 
-public class PlayScreen implements Screen {
-    private MaddBomber game;
-    private Match match;
-    private GameClient client = null;
-    private GameServer server = null;
+enum class PlayState {
+    CLIENT_SERVER,
+    CLIENT,
+    SERVER,
+    SINGLEPLAYER
+}
 
-    public PlayScreen(MaddBomber game, GameClient client, GameServer server) {
-        this.game = game;
-        this.client = client;
-        this.server = server;
-        if (server != null && client != null) { // Hosting and playing
-            match = new Match(game, "Maps/Sandstone Larger.tmx", true);
-        } else if (client != null) { // Just playing on an existing server
-            match = new Match(game, "Maps/Sandstone Larger.tmx", false);
-        } else if (server != null) { // Just hosting server, not playing
-            match = new Match(game, "Maps/Sandstone Larger.tmx", true);
-        } else { // Singleplayer
-            match = new Match(game, "Maps/Sandstone Larger.tmx", true);
-            match.addPlayer(new Player(
-                    2,
-                    2,
-                    game.getControls().getControlProfile(0),
-                    match.gameWorld,
-                    game,
-                    0,
-                    new Color(1f, 0.75f, 0.75f, 1f)));
+class PlayScreen(private val game: MaddBomber, val playState: PlayState) : Screen {
+    private var match: Match
 
-            match.addPlayer(new AIPlayer(
-                    21,
-                    13,
-                    game.getControls().getControlProfile(1),
-                    match.gameWorld,
-                    game,
-                    1,
-                    new Color(0.75f, 0.75f, 1f, 1f)));
+    init {
+        when (playState) {
+            PlayState.CLIENT_SERVER -> {
+                match = Match(game, "Maps/Sandstone Larger.tmx", true)
+            }
+            PlayState.CLIENT -> {
+                match = Match(game, "Maps/Sandstone Larger.tmx", false)
+            }
+            PlayState.SERVER -> {
+                match = Match(game, "Maps/Sandstone Larger.tmx", true)
+            }
+            PlayState.SINGLEPLAYER -> {
+                match = Match(game, "Maps/Sandstone Larger.tmx", true)
+                match.addPlayer(Player(
+                        2,
+                        2,
+                        game.controls.getControlProfile(0),
+                        match.gameWorld,
+                        game,
+                        0,
+                        Color(1f, 0.75f, 0.75f, 1f)))
+
+                match.addPlayer(AIPlayer(
+                        21,
+                        13,
+                        game.controls.getControlProfile(1),
+                        match.gameWorld,
+                        game,
+                        1,
+                        Color(0.75f, 0.75f, 1f, 1f)))
+            }
         }
-
     }
 
-    @Override
-    public void show() {
+    override fun show() {}
+
+    override fun render(delta: Float) {
+        match.render(delta)
     }
 
-    @Override
-    public void render(float delta) {
-        match.render(delta);
+    override fun resize(width: Int, height: Int) {
+        match.resize(width, height)
     }
 
-    @Override
-    public void resize(int width, int height) {
-        match.resize(width, height);
-    }
+    override fun pause() {}
 
-    @Override
-    public void pause() {
-    }
+    override fun resume() {}
 
-    @Override
-    public void resume() {
-    }
+    override fun hide() {}
 
-    @Override
-    public void hide() {
+    override fun dispose() {
+        match.dispose()
     }
-
-    @Override
-    public void dispose() {
-        match.dispose();
-    }
-
 }
