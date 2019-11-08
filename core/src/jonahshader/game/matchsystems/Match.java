@@ -100,7 +100,7 @@ public class Match implements Disposable{
 
     public void addPlayer(Player player) {
         multiplexer.addProcessor(player);
-        gameWorld.getPlayers().add(player);
+        gameWorld.addPlayer(player);
     }
 
     public void removePlayer(Player player) {
@@ -113,19 +113,21 @@ public class Match implements Disposable{
     }
 
     private void updateScores() {
-        for (int i = 0; i < gameWorld.getPlayers().size(); i++) {
+        //TODO: this is broken
+        for (int i = 0; i < gameWorld.getPlayers().values().size(); i++) {
             switch (i){
                 case 0:
-                    hud.setPlayer1Score(gameWorld.getPlayers().get(i).getScore());
+                    hud.setPlayer1Score(((Player)gameWorld.getPlayers().values().toArray()[i]).getScore());
                     break;
                 case 1:
-                    hud.setPlayer2Score(gameWorld.getPlayers().get(i).getScore());
+                    hud.setPlayer2Score(((Player)gameWorld.getPlayers().values().toArray()[i]).getScore());
                     break;
                 case 2:
-                    hud.setPlayer3Score(gameWorld.getPlayers().get(i).getScore());
+                    hud.setPlayer3Score(((Player)gameWorld.getPlayers().values().toArray()[i]).getScore());
                     break;
                 case 3:
-                    hud.setPlayer4Score(gameWorld.getPlayers().get(i).getScore());
+//                    hud.setPlayer4Score(gameWorld.getPlayers().get(i).getScore());
+                    hud.setPlayer4Score(((Player)gameWorld.getPlayers().values().toArray()[i]).getScore());
                     break;
                 default:
                     break;

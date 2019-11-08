@@ -92,7 +92,7 @@ public class AIPlayer extends Player {
     public void run(float dt) {
         Player target = null;
         double lowestDistance = Double.MAX_VALUE;
-        for (Player player : getGameWorld().getPlayers()) {
+        for (Player player : getGameWorld().getPlayers().values()) {
             if (player != this && player.isSpawned()) {
                 double distance = Math.sqrt(Math.pow(player.getX() - getX(), 2) + Math.pow(player.getY() - getY(), 2));
                 if (distance < lowestDistance) {

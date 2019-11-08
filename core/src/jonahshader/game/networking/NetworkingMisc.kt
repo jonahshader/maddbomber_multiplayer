@@ -5,8 +5,8 @@ import jonahshader.game.gameitems.Pickups.Pickup
 
 // packets
 
-// client sends this to the server when client creates character
-class RegisterNewPlayerPacket(val name: String, val r: Float, val g: Float, val b: Float)
+class RegisterNewPlayerPacket(val name: String, val r: Float, val g: Float, val b: Float)                           // client sends this to the server when client creates character
+class PlayerRegisterResponse(val userId: Int, val r: Float, val g: Float, val b: Float, val x: Int, val y: Int)
 class ID(val userId: Int)
 class UpdateMovementPacket(val userId: Int, val x: Float, val y: Float,
                            val xSpeed: Float, val ySpeed: Float,
@@ -27,6 +27,7 @@ to be added in the future
 
 fun registerClasses(kryo: Kryo) {
     kryo.register(RegisterNewPlayerPacket::class.java)
+    kryo.register(PlayerRegisterResponse::class.java)
     kryo.register(ID::class.java)
     kryo.register(UpdateMovementPacket::class.java)
     kryo.register(CreateBombPacket::class.java)

@@ -90,9 +90,13 @@ class GameWorld(mapFileName: String) : Disposable {
     }
 
     fun update(deltaTime: Float) {
-        for ((_, player) in players) {
+//        for ((_, player) in players) {
+//            player.run(deltaTime)
+//        }
+        for (player in players.values) {
             player.run(deltaTime)
         }
+
         for (bomb in bombs) {
             bomb.run(deltaTime)
         }
@@ -113,9 +117,12 @@ class GameWorld(mapFileName: String) : Disposable {
             bomb.draw(batch)
         }
 
-        for ((_, player) in players) {
+//        for ((_, player) in players) {
+//            player.draw(batch)
+//        }
+
+        for (player in players.values)
             player.draw(batch)
-        }
 
         for (explosion in explosions) {
             explosion.draw(batch)
@@ -165,5 +172,9 @@ class GameWorld(mapFileName: String) : Disposable {
     override fun dispose() {
         map.dispose()
         //TODO: dispose items n stuff
+    }
+
+    fun addPlayer(player: Player) {
+        players[player.networkId] = player
     }
 }

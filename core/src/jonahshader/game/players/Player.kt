@@ -22,7 +22,7 @@ import java.util.ArrayList
 import kotlin.math.atan2
 
 
-open class Player(tileX: Int, tileY: Int, private val controlProfile: ControlProfile, var gameWorld: GameWorld, protected var game: MaddBomber, private val playerId: Int, private val playerColor: Color) : InputProcessor {
+open class Player(tileX: Int, tileY: Int, private val controlProfile: ControlProfile?, var gameWorld: GameWorld, protected var game: MaddBomber, private val playerId: Int, private val playerColor: Color) : InputProcessor {
     //Center of player sprite
     //in world pixels
     var x: Double = 0.toDouble()
@@ -58,7 +58,7 @@ open class Player(tileX: Int, tileY: Int, private val controlProfile: ControlPro
     var placeKeyDown: Boolean = false
     var activateKeyDown: Boolean = false
 
-    var networkId = -1
+    var networkId = playerId
 
     private val wallColliding: Boolean
         get() {
@@ -109,49 +109,33 @@ open class Player(tileX: Int, tileY: Int, private val controlProfile: ControlPro
     }
 
     override fun keyDown(keycode: Int): Boolean {
-        if (keycode == controlProfile.upKey) {
-            upKeyDown = true
-            //            return true;
-        } else if (keycode == controlProfile.downKey) {
-            downKeyDown = true
-            //            return true;
-        } else if (keycode == controlProfile.leftKey) {
-            leftKeyDown = true
-            //            return true;
-        } else if (keycode == controlProfile.rightKey) {
-            rightKeyDown = true
-            //            return true;
-        } else if (keycode == controlProfile.placeKey) {
-            createBomb()
-            placeKeyDown = true
-            //            return true;
-        } else if (keycode == controlProfile.activateKey) {
-            activateKeyDown = true
-            //            return true;
+        if (controlProfile != null) {
+            when (keycode) {
+                controlProfile.upKey -> upKeyDown = true
+                controlProfile.downKey -> downKeyDown = true
+                controlProfile.leftKey -> leftKeyDown = true
+                controlProfile.rightKey -> rightKeyDown = true
+                controlProfile.placeKey -> {
+                    createBomb()
+                    placeKeyDown = true
+                }
+                controlProfile.activateKey -> activateKeyDown = true
+            }
         }
 
         return false
     }
 
     override fun keyUp(keycode: Int): Boolean {
-        if (keycode == controlProfile.upKey) {
-            upKeyDown = false
-            //            return true;
-        } else if (keycode == controlProfile.downKey) {
-            downKeyDown = false
-            //            return true;
-        } else if (keycode == controlProfile.leftKey) {
-            leftKeyDown = false
-            //            return true;
-        } else if (keycode == controlProfile.rightKey) {
-            rightKeyDown = false
-            //            return true;
-        } else if (keycode == controlProfile.placeKey) {
-            placeKeyDown = false
-            //            return true;
-        } else if (keycode == controlProfile.activateKey) {
-            activateKeyDown = false
-            //            return true;
+        if (controlProfile != null) {
+            when (keycode) {
+                controlProfile.upKey -> upKeyDown = false
+                controlProfile.downKey -> downKeyDown = false
+                controlProfile.leftKey -> leftKeyDown = false
+                controlProfile.rightKey -> rightKeyDown = false
+                controlProfile.placeKey -> placeKeyDown = false
+                controlProfile.activateKey -> activateKeyDown = false
+            }
         }
 
         return false
