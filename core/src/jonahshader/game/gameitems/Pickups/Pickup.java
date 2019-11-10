@@ -7,9 +7,6 @@ import com.badlogic.gdx.math.Rectangle;
 import jonahshader.game.MaddBomber;
 import jonahshader.game.players.Player;
 
-import static jonahshader.game.MaddBomber.Companion;
-
-
 public class Pickup {
     final static double SPEED_INCREASE_FACTOR = 0.3; //1.1
     public enum PickupType {
@@ -63,9 +60,6 @@ public class Pickup {
                         type = PickupType.SPEED_INCREASE;
                     }
                 }
-                break;
-            case 2:
-                type = PickupType.SPEED_INCREASE;
                 break;
             default:
                 type = PickupType.SPEED_INCREASE;

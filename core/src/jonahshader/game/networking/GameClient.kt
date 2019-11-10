@@ -14,10 +14,12 @@ object GameClient {
     private var gameWorld: GameWorld? = null
     private var game: MaddBomber? = null
 
-
-    fun startClient(ip: String, port: Int, gameWorld: GameWorld, game: MaddBomber) {
+    fun setGameWorldAndGame(gameWorld: GameWorld, game: MaddBomber) {
         this.gameWorld = gameWorld
         this.game = game
+    }
+
+    fun startClient(ip: String, port: Int) {
         client.start()
         client.connect(5000, ip, port, port)
 
@@ -25,7 +27,7 @@ object GameClient {
             override fun received(connection: Connection?, `object`: Any?) {
                 if (`object` is PlayerRegisterResponse) {
                     // register successful, create player
-                    clientPlayer = Player(`object`.x, `object`.y, null, gameWorld, game, `object`.userId, Color(`object`.r, `object`.g, `object`.b, 1f))
+                    clientPlayer = gameWorld?.let { game?.let { it1 -> Player(`object`.x, `object`.y, null, it, it1, `object`.userId, Color(`object`.r, `object`.g, `object`.b, 1f)) } }
                 }
             }
         })

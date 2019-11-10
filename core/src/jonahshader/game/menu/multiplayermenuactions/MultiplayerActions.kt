@@ -7,6 +7,11 @@ import jonahshader.game.menu.Menu
 import jonahshader.game.menu.MenuAction
 import jonahshader.game.menu.mainmenuactions.PlayGameAction
 import jonahshader.game.menu.mainmenuactions.SettingsAction
+import jonahshader.game.networking.GameClient
+import jonahshader.game.networking.GameServer
+import jonahshader.game.screens.LobbyScreen
+import jonahshader.game.screens.PlayScreen
+import jonahshader.game.screens.PlayState
 import java.text.NumberFormat
 import javax.swing.JFormattedTextField
 import javax.swing.JFrame
@@ -17,8 +22,10 @@ class CreateServerAction(private val game: MaddBomber) : MenuAction {
     override fun executeAction(): Boolean {
         val portString = JOptionPane.showInputDialog(JFrame(), "Enter Port:")
 
-        // create server with port 25565
-
+        // move screen to lobby
+        game.multiplexer.clear()
+        GameServer.startServer(portString.toInt())
+        game.screen = PlayScreen(game, PlayState.SERVER)
         return true
     }
 }
@@ -29,7 +36,9 @@ class JoinServerAction(private val game: MaddBomber) : MenuAction {
         val portString = JOptionPane.showInputDialog(JFrame(), "Enter Port:")
 
         // join server with address
-
+        game.multiplexer.clear()
+        GameClient.startClient(ipString, portString.toInt())
+        game.screen = PlayScreen(game, PlayState.CLIENT)
         return true
     }
 }

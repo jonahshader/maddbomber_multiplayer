@@ -20,16 +20,16 @@ class PlayScreen(private val game: MaddBomber, val playState: PlayState) : Scree
     init {
         when (playState) {
             PlayState.CLIENT_SERVER -> {
-                match = Match(game, "Maps/Sandstone Larger.tmx", true)
+                match = Match(game, "Maps/Sandstone Larger.tmx", true, true)
             }
             PlayState.CLIENT -> {
-                match = Match(game, "Maps/Sandstone Larger.tmx", false)
+                match = Match(game, "Maps/Sandstone Larger.tmx", false, true)
             }
             PlayState.SERVER -> {
-                match = Match(game, "Maps/Sandstone Larger.tmx", true)
+                match = Match(game, "Maps/Sandstone Larger.tmx", true, true)
             }
             PlayState.SINGLEPLAYER -> {
-                match = Match(game, "Maps/Sandstone Larger.tmx", true)
+                match = Match(game, "Maps/Sandstone Larger.tmx", true, false)
                 match.addPlayer(Player(
                         2,
                         2,

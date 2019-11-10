@@ -48,10 +48,8 @@ object GameServer {
     fun startGame() {
         if (!gameStarted) {
             gameStarted = true
-            val msg = StartGamePacket()
             for (connection in server.connections) {
-                connection.sendTCP(gameStarted)
-                // loop through all players and call spawnPlayer on them
+                connection.sendTCP(StartGamePacket())
             }
         }
     }

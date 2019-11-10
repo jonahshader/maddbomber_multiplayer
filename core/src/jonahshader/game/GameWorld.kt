@@ -83,16 +83,12 @@ class GameWorld(mapFileName: String) : Disposable {
         }
 
     init {
-
         val mapLoader = TmxMapLoader()
         map = mapLoader.load(mapFileName)
         mapProperties = map.properties
     }
 
     fun update(deltaTime: Float) {
-//        for ((_, player) in players) {
-//            player.run(deltaTime)
-//        }
         for (player in players.values) {
             player.run(deltaTime)
         }
@@ -116,10 +112,6 @@ class GameWorld(mapFileName: String) : Disposable {
         for (bomb in bombs) {
             bomb.draw(batch)
         }
-
-//        for ((_, player) in players) {
-//            player.draw(batch)
-//        }
 
         for (player in players.values)
             player.draw(batch)

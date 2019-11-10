@@ -13,8 +13,11 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import jonahshader.game.gameitems.Pickups.Pickup;
 import jonahshader.game.GameWorld;
 import jonahshader.game.MaddBomber;
+import jonahshader.game.networking.GameClient;
+import jonahshader.game.networking.RegisterNewPlayerPacket;
 import jonahshader.game.players.Player;
 import jonahshader.game.scenes.Hud;
+import jonahshader.game.screens.PlayState;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -27,16 +30,18 @@ public class Match implements Disposable{
     private Viewport gamePort;
     private Hud hud;
     private InputMultiplexer multiplexer;
-    private boolean master;
+
+    // Networking stuff
+    private PlayState playState;
+    private double timeToStart = 30; // in seconds
 
     //Map stuff
     public GameWorld gameWorld;
     private OrthogonalTiledMapRenderer mapRenderer;
 
-    //TODO: put more stuff in this constructor, like a ControlProfile array, map, playerTexture array, etc.
-    public Match(MaddBomber game, String mapFileName, boolean master) {
+    public Match(MaddBomber game, String mapFileName, PlayState playState, RegisterNewPlayerPacket playerInfo) {
         this.game = game;
-        this.master = master;
+        this.playState = playState;
         gameCam = new OrthographicCamera(MaddBomber.V_WIDTH, MaddBomber.V_HEIGHT);
         hud = new Hud(game);
         gameWorld = new GameWorld(mapFileName);
@@ -45,33 +50,35 @@ public class Match implements Disposable{
         mapRenderer = new OrthogonalTiledMapRenderer(gameWorld.getMap());
         gameCam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
 
+        GameClient.INSTANCE.setGameWorldAndGame(gameWorld, game);
+
+        if (playState == PlayState.SINGLEPLAYER) {
+            timeToStart = 0; // Start immediately if in singleplayer mode
+        } else if (playState == PlayState.CLIENT) {
+            GameClient.INSTANCE.registerPlayer(playerInfo);
+        }
+
         //Use InputMultiplexer for input handling
         multiplexer = new InputMultiplexer();
         Gdx.input.setInputProcessor(multiplexer);
-
-
-//        addPlayer(new AIPlayer(2, 13, game.getControls().getControlProfile(0), gameWorld, game, 2, new Color(1, 0.2f, 0.8f, 1f)));
-//        addPlayer(new AIPlayer(21, 2, game.getControls().getControlProfile(0), gameWorld, game, 3, new Color(0.1f, 0.2f, 0.3f, 0.8f)));
-//        gameWorld.getPlayers().get(2).getSpawner().requestRespawn();
-////        gameWorld.getPlayers().get(3).getSpawner().requestRespawn();
-//        for (int i = 0; i < 4; i++) {
-//            addPlayer(new AIPlayer(14, 1, game.getControls().getControlProfile(0), gameWorld, game, 3, new Color((float) Math.random(), (float) Math.random(), (float) Math.random(), 1f)));
-//        }
-
-
-
-//        tempButton = new Button(200, 150, 90, 35, "hi guys im a button");
     }
 
     //first thing that runs in render method
     private void update(float dt) {
         dt *= TIME_SCALE;
-        gameWorld.update(dt);
-        gameCam.update();
-        mapRenderer.setView(gameCam);
-        hud.updateLables();
-        updateScores();
-        itemSpawner(dt);
+
+
+
+        if (timeToStart > 0) {
+            timeToStart -= dt;
+        } else {
+            gameWorld.update(dt);
+            gameCam.update();
+            mapRenderer.setView(gameCam);
+            hud.updateLables();
+            updateScores();
+            runItemSpawner(dt, playState);
+        }
     }
 
     public void render(float delta) {
@@ -135,7 +142,7 @@ public class Match implements Disposable{
         }
     }
 
-    private void itemSpawner(float dt) {
+    private void runItemSpawner(float dt) {
         if (Math.random() < 0.1 * dt) {
             ArrayList<Point> pickupSpawnCanidates = gameWorld.getWalkableSpace();
             Point selectedLocation = pickupSpawnCanidates.get((int) (Math.random() * pickupSpawnCanidates.size()));
